@@ -1,5 +1,5 @@
-import { ExampleSmolFrontendClient } from "~/routes/exampleSmolFrontend.client";
-import { ExampleSmolFrontendServer } from "~/routes/exampleSmolFrontend.server";
+import { ExampleSmolFrontendClient } from "~/exampleSmolFrontend/exampleSmolFrontend.client";
+import { ExampleSmolFrontendServer } from "~/exampleSmolFrontend/exampleSmolFrontend.server";
 
 export default function Index() {
   const ExampleSmolFrontend =

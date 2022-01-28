@@ -2,7 +2,7 @@ import { renderToString } from "react-dom/server";
 import type { EntryContext } from "remix";
 import { RemixServer } from "remix";
 
-import { loadExampleSmolFrontendServer } from "~/routes/exampleSmolFrontend.server";
+import { loadExampleSmolFrontendServer } from "~/exampleSmolFrontend/exampleSmolFrontend.server";
 
 export default async function handleRequest(
   request: Request,

@@ -9,7 +9,8 @@ export const loadExampleSmolFrontendServer = async (): Promise<string> => {
   const smolFrontendServerResponse = await loadSmolFrontendServer<React.FC>({
     name: "ExampleSmolFrontend",
     contractVersion: "1.0.0",
-    smolApiEndpoint: "https://api-cloudflare.pages.dev/api",
+    smolApiEndpoint:
+      "https://smol-frontent-api-cloudlare-example.gnomesgames.workers.dev/api",
   });
 
   ExampleSmolFrontendServer = smolFrontendServerResponse.smolFrontend;
