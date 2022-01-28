@@ -1,6 +1,10 @@
-import { ExampleSmolFrontend } from "~/routes/exampleSmolFrontend";
+import { ExampleSmolFrontendClient } from "~/routes/exampleSmolFrontend.client";
+import { ExampleSmolFrontendServer } from "~/routes/exampleSmolFrontend.server";
 
 export default function Index() {
+  const ExampleSmolFrontend =
+    ExampleSmolFrontendClient || ExampleSmolFrontendServer;
+
   return (
     <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
       <h1>Example Remix smol frontend host</h1>

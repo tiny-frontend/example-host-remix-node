@@ -1,15 +1,15 @@
+import type { MetaFunction } from "remix";
 import {
   Links,
   LiveReload,
   Meta,
   Outlet,
   Scripts,
-  ScrollRestoration
+  ScrollRestoration,
 } from "remix";
-import type { MetaFunction } from "remix";
 
 export const meta: MetaFunction = () => {
-  return { title: "New Remix App" };
+  return { title: "Example Remix smol frontend host" };
 };
 
 export default function App() {
@@ -20,6 +20,7 @@ export default function App() {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <Links />
+        {typeof document === "undefined" ? "__SMOL_FRONTEND_SSR__" : null}
       </head>
       <body>
         <Outlet />

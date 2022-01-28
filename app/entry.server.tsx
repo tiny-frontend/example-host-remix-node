@@ -2,7 +2,7 @@ import { renderToString } from "react-dom/server";
 import type { EntryContext } from "remix";
 import { RemixServer } from "remix";
 
-import { ensureExampleSmolFrontendLoaded } from "~/routes/exampleSmolFrontend";
+import { loadExampleSmolFrontendServer } from "~/routes/exampleSmolFrontend.server";
 
 export default async function handleRequest(
   request: Request,
@@ -10,7 +10,8 @@ export default async function handleRequest(
   responseHeaders: Headers,
   remixContext: EntryContext
 ) {
-  await ensureExampleSmolFrontendLoaded();
+  const smolFrontendScriptTagToAddToSsrResult =
+    await loadExampleSmolFrontendServer();
 
   const markup = renderToString(
     <RemixServer context={remixContext} url={request.url} />
@@ -18,8 +19,15 @@ export default async function handleRequest(
 
   responseHeaders.set("Content-Type", "text/html");
 
-  return new Response("<!DOCTYPE html>" + markup, {
-    status: responseStatusCode,
-    headers: responseHeaders,
-  });
+  return new Response(
+    "<!DOCTYPE html>" +
+      markup.replace(
+        "__SMOL_FRONTEND_SSR__",
+        smolFrontendScriptTagToAddToSsrResult
+      ),
+    {
+      status: responseStatusCode,
+      headers: responseHeaders,
+    }
+  );
 }
