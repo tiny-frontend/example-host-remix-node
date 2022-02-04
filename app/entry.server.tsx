@@ -2,7 +2,7 @@ import { renderToString } from "react-dom/server";
 import type { EntryContext } from "remix";
 import { RemixServer } from "remix";
 
-import { loadExampleTinyFrontendServer } from "~/exampleTinyFrontend/exampleTinyFrontend.server";
+import { ensureExampleTinyFrontendLoadedServer } from "~/exampleTinyFrontend/exampleTinyFrontend.server";
 
 export default async function handleRequest(
   request: Request,
@@ -11,7 +11,7 @@ export default async function handleRequest(
   remixContext: EntryContext
 ) {
   const tinyFrontendScriptTagToAddToSsrResult =
-    await loadExampleTinyFrontendServer();
+    await ensureExampleTinyFrontendLoadedServer();
 
   const markup = renderToString(
     <RemixServer context={remixContext} url={request.url} />

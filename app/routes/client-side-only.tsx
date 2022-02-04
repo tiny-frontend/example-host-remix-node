@@ -1,25 +1,20 @@
-import { loadTinyFrontendClient } from "@tiny-frontend/client";
+import {
+  ExampleTinyFrontendType,
+  loadExampleTinyFrontendClient,
+} from "@tiny-frontent/example-tiny-frontend-contract";
 import { useEffect, useState } from "react";
 import * as React from "react";
 
-import { ExampleTinyFrontend } from "~/exampleTinyFrontend/types";
-
 export default function ClientSideOnly() {
   const [ExampleTinyFrontend, setExampleTinyFrontend] =
-    useState<ExampleTinyFrontend>();
+    useState<ExampleTinyFrontendType>();
 
   const loadTinyFrontend = async () => {
-    const mfe = await loadTinyFrontendClient<React.FC>({
-      name: "ExampleTinyFrontend",
-      contractVersion: "1.0.0",
-      tinyApiEndpoint:
-        "https://tiny-frontent-api-cloudlare-example.gnomesgames.workers.dev/api",
-      dependenciesMap: {
-        react: React,
-      },
-    });
+    const ExampleTinyFrontend = await loadExampleTinyFrontendClient(
+      "https://tiny-frontent-api-cloudlare-example.gnomesgames.workers.dev/api"
+    );
 
-    setExampleTinyFrontend(() => mfe);
+    setExampleTinyFrontend(() => ExampleTinyFrontend);
   };
 
   useEffect(() => {

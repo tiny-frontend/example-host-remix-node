@@ -1,21 +1,16 @@
-import { loadTinyFrontendServer } from "@tiny-frontend/client";
-import * as React from "react";
+import {
+  ExampleTinyFrontendType,
+  loadExampleTinyFrontendServer,
+} from "@tiny-frontent/example-tiny-frontend-contract";
 
-import { ExampleTinyFrontend } from "~/exampleTinyFrontend/types";
+export let ExampleTinyFrontendServer: ExampleTinyFrontendType;
 
-export let ExampleTinyFrontendServer: ExampleTinyFrontend;
+export const ensureExampleTinyFrontendLoadedServer =
+  async (): Promise<string> => {
+    const tinyFrontendServerResponse = await loadExampleTinyFrontendServer(
+      "https://tiny-frontent-api-cloudlare-example.gnomesgames.workers.dev/api"
+    );
 
-export const loadExampleTinyFrontendServer = async (): Promise<string> => {
-  const tinyFrontendServerResponse = await loadTinyFrontendServer<React.FC>({
-    name: "ExampleTinyFrontend",
-    contractVersion: "1.0.0",
-    tinyApiEndpoint:
-      "https://tiny-frontent-api-cloudlare-example.gnomesgames.workers.dev/api",
-    dependenciesMap: {
-      react: React,
-    },
-  });
-
-  ExampleTinyFrontendServer = tinyFrontendServerResponse.tinyFrontend;
-  return tinyFrontendServerResponse.tinyFrontendStringToAddToSsrResult;
-};
+    ExampleTinyFrontendServer = tinyFrontendServerResponse.tinyFrontend;
+    return tinyFrontendServerResponse.tinyFrontendStringToAddToSsrResult;
+  };
