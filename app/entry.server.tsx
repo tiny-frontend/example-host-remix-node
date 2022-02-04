@@ -2,7 +2,7 @@ import { renderToString } from "react-dom/server";
 import type { EntryContext } from "remix";
 import { RemixServer } from "remix";
 
-import { loadExampleSmolFrontendServer } from "~/exampleSmolFrontend/exampleSmolFrontend.server";
+import { loadExampleTinyFrontendServer } from "~/exampleTinyFrontend/exampleTinyFrontend.server";
 
 export default async function handleRequest(
   request: Request,
@@ -10,8 +10,8 @@ export default async function handleRequest(
   responseHeaders: Headers,
   remixContext: EntryContext
 ) {
-  const smolFrontendScriptTagToAddToSsrResult =
-    await loadExampleSmolFrontendServer();
+  const tinyFrontendScriptTagToAddToSsrResult =
+    await loadExampleTinyFrontendServer();
 
   const markup = renderToString(
     <RemixServer context={remixContext} url={request.url} />
@@ -22,8 +22,8 @@ export default async function handleRequest(
   return new Response(
     "<!DOCTYPE html>" +
       markup.replace(
-        "__SMOL_FRONTEND_SSR__",
-        smolFrontendScriptTagToAddToSsrResult
+        "__TINY_FRONTEND_SSR__",
+        tinyFrontendScriptTagToAddToSsrResult
       ),
     {
       status: responseStatusCode,
