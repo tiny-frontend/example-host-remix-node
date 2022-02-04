@@ -1,15 +1,17 @@
-import { ExampleTinyFrontendClient } from "~/exampleTinyFrontend/exampleTinyFrontend.client";
-import { ExampleTinyFrontendServer } from "~/exampleTinyFrontend/exampleTinyFrontend.server";
+import { Link } from "@remix-run/react";
 
 export default function Index() {
-  const ExampleTinyFrontend =
-    ExampleTinyFrontendClient || ExampleTinyFrontendServer;
-
   return (
     <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
       <h1>Example Remix tiny frontend host</h1>
-      <p>Below is a micro frontend loaded dynamically on SSR and client side</p>
-      <ExampleTinyFrontend />
+      <ul>
+        <li>
+          <Link to="/ssr">Page with MFE with SSR</Link>
+        </li>
+        <li>
+          <Link to="/client-side-only">Page with MFE on client side only</Link>
+        </li>
+      </ul>
     </div>
   );
 }

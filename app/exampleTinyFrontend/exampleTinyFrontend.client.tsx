@@ -1,7 +1,9 @@
 import { loadTinyFrontendClient } from "@tiny-frontend/client";
 import * as React from "react";
 
-export let ExampleTinyFrontendClient: React.FC;
+import { ExampleTinyFrontend } from "~/exampleTinyFrontend/types";
+
+export let ExampleTinyFrontendClient: ExampleTinyFrontend;
 
 export const ensureExampleTinyFrontendLoadedClient = async () => {
   ExampleTinyFrontendClient = await loadTinyFrontendClient<React.FC>({
