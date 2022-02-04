@@ -8,7 +8,7 @@ export default function ClientSideOnly() {
   const [ExampleTinyFrontend, setExampleTinyFrontend] =
     useState<ExampleTinyFrontend>();
 
-  const loadMfe = async () => {
+  const loadTinyFrontend = async () => {
     const mfe = await loadTinyFrontendClient<React.FC>({
       name: "ExampleTinyFrontend",
       contractVersion: "1.0.0",
@@ -23,13 +23,12 @@ export default function ClientSideOnly() {
   };
 
   useEffect(() => {
-    loadMfe();
+    loadTinyFrontend();
   }, []);
 
   return (
-    <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
-      <h1>Example Remix tiny frontend host</h1>
-      <p>Below is a micro frontend loaded dynamically on SSR and client side</p>
+    <div>
+      <p>Below is a micro frontend loaded dynamically only on client side</p>
       {ExampleTinyFrontend ? (
         <ExampleTinyFrontend name="World" />
       ) : (

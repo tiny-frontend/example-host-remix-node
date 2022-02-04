@@ -6,10 +6,9 @@ export default function Ssr() {
     ExampleTinyFrontendClient || ExampleTinyFrontendServer;
 
   return (
-    <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
-      <h1>Example Remix tiny frontend host</h1>
+    <div>
       <p>Below is a micro frontend loaded dynamically on SSR and client side</p>
-      <ExampleTinyFrontend name={"world"} />
+      <ExampleTinyFrontend name={"World"} />
     </div>
   );
 }
