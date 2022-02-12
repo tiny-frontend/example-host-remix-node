@@ -1,4 +1,3 @@
-import { Link } from "@remix-run/react";
 import type { MetaFunction } from "remix";
 import {
   Links,
@@ -8,6 +7,12 @@ import {
   Scripts,
   ScrollRestoration,
 } from "remix";
+
+import styles from "./styles/built/tailwind.css";
+
+export function links() {
+  return [{ rel: "stylesheet", href: styles }];
+}
 
 export const meta: MetaFunction = () => {
   return { title: "Example Remix tiny frontend host" };
@@ -24,22 +29,16 @@ export default function App() {
         <Links />
         {typeof document === "undefined" ? "__TINY_FRONTEND_SSR__" : null}
       </head>
-      <body style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
-        <h1>Example Remix tiny frontend host</h1>
-        <ul>
-          <li>
-            <Link to="/">Index</Link>
-          </li>
-          <li>
-            <Link to="/ssr">Page with MFE with SSR</Link>
-          </li>
-          <li>
-            <Link to="/client-side-only">
-              Page with MFE on client side only
-            </Link>
-          </li>
-        </ul>
-        <Outlet />
+      <body className="bg-dark text-white max-w-4xl m-auto">
+        <main className="p-4 space-y-4">
+          <h1 className="flex flex-col space-y-4 justify-center items-center md:flex-row md:space-x-4 md:space-y-0">
+            <img src="/logo.png" alt="" width="44" />
+            <span className="text-2xl font-bold text-center">
+              Example Remix tiny frontend host
+            </span>
+          </h1>
+          <Outlet />
+        </main>
         <ScrollRestoration />
         <Scripts />
         {process.env.NODE_ENV === "development" && <LiveReload />}
