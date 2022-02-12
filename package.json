@@ -4,10 +4,10 @@
   "description": "",
   "license": "",
   "scripts": {
-    "build": "remix build",
+    "build": "NODE_ENV=production remix build",
     "dev": "remix dev",
     "postinstall": "remix setup node",
-    "deploy": "fly deploy --remote-only -e NODE_ENV=production",
+    "deploy": "fly deploy --remote-only",
     "start": "remix-serve build"
   },
   "dependencies": {
