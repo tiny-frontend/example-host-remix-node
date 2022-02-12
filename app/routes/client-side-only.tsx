@@ -5,6 +5,7 @@ import {
 import { useEffect, useState } from "react";
 import * as React from "react";
 
+import { DescriptionBlock } from "~/components/description-block";
 import { StyledLink } from "~/components/styled-link";
 
 export default function ClientSideOnly() {
@@ -26,18 +27,18 @@ export default function ClientSideOnly() {
   }, []);
 
   return (
-    <div className="space-y-4">
-      <div className="space-y-1">
+    <div className="space-y-4 md:space-y-6">
+      <DescriptionBlock>
         <p>
           Below, inside the dashed box, is a tiny frontend loaded dynamically{" "}
-          <strong>client side only</strong>.
+          <strong className="text-primary-base">client side only</strong>.
         </p>
         <p>
           On page reload you might notice a quick flickering while the tiny
           frontend loads. If you disable JavaScript you&apos;ll only see a{" "}
           <strong>Loading...</strong> label.
         </p>
-      </div>
+      </DescriptionBlock>
       {ExampleTinyFrontend ? (
         <ExampleTinyFrontend name="Remix" onCounterChange={setCounter} />
       ) : (
